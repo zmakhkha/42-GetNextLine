@@ -6,11 +6,11 @@
 /*   By: zmakhkha <zmakhkha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:09:33 by zmakhkha          #+#    #+#             */
-/*   Updated: 2022/12/02 15:22:12 by zmakhkha         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:39:40 by zmakhkha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "get_next_line.h"
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -20,6 +20,25 @@ size_t	ft_strlen(const char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*p;
+	char	*p1;
+	size_t		i;
+
+	p = (void *)malloc(count * size);
+	if (!p)
+		return (NULL);
+	i = 0;
+	p1 = (char *)p;
+	while (i < size * count)
+	{
+		*(p1 + i) = '\0';
+		i++;
+	}
+	return (p);
 }
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t len)
@@ -80,18 +99,16 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (t);
 }
 
-
 int	ft_size_len(const char *a, int b)
 {
 	int	i;
 
 	if (!a)
 		return (0);
-	
 	i = 0;
 	if (b)
 	{
-		while (a[i] != '\n')
+		while (a[i] && a[i] != '\n')
 			i++;
 		return (i);
 	}
@@ -101,16 +118,4 @@ int	ft_size_len(const char *a, int b)
 			i++;
 		return (i);
 	}
-}
-
-int found_new_line(char *a)
-{
-	int	i;
-
-	i = 0;
-	while(a[i] && a[i] != '\n')
-		i++;
-	if (a[i] == '\n')
-		return (1);
-	return (0);
 }
