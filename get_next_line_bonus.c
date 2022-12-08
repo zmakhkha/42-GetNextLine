@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zmakhkha <zmakhkha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:09:36 by zmakhkha          #+#    #+#             */
-/*   Updated: 2022/12/08 17:52:54 by zmakhkha         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:15:11 by zmakhkha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,26 +87,26 @@ int	found_new_line(char *a)
 
 char	*get_next_line(int fd)
 {
-	static char	*buff;
+	static char	*buff[OPEN_MAX];
 	char		*line;
 	int			_size;
 	int			new_line_index;
 
 	line = NULL;
 	_size = BUFFER_SIZE;
-	if (!buff)
-		buff = ft_calloc(1, 1);
+	if (!buff[fd])
+		buff[fd] = ft_calloc(1, 1);
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0))
-		return (get_last(&buff, NULL, 0), NULL);
-	while (!found_new_line(buff) && _size != 0)
-		buff = fill_buffer(fd, buff, &_size);
-	if (found_new_line(buff))
+		return (get_last(&buff[fd], NULL, 0), NULL);
+	while (!found_new_line(buff[fd]) && _size != 0)
+		buff[fd] = fill_buffer(fd, buff[fd], &_size);
+	if (found_new_line(buff[fd]))
 	{
-		new_line_index = ft_size_len(buff, 1);
-		line = ft_substr(buff, 0, new_line_index + 1);
-		buff = update_buffer(buff);
+		new_line_index = ft_size_len(buff[fd], 1);
+		line = ft_substr(buff[fd], 0, new_line_index + 1);
+		buff[fd] = update_buffer(buff[fd]);
 	}
 	else if (_size == 0)
-		get_last(&buff, &line, 1);
+		get_last(&buff[fd], &line, 1);
 	return (line);
 }
