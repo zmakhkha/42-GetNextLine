@@ -6,7 +6,7 @@
 /*   By: zmakhkha <zmakhkha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:09:39 by zmakhkha          #+#    #+#             */
-/*   Updated: 2022/12/08 17:39:12 by zmakhkha         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:03:36 by zmakhkha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <libc.h>
 # include <limits.h>
 
 char	*get_next_line(int fd);

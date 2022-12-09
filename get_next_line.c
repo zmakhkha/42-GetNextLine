@@ -6,7 +6,7 @@
 /*   By: zmakhkha <zmakhkha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:09:36 by zmakhkha          #+#    #+#             */
-/*   Updated: 2022/12/08 17:52:54 by zmakhkha         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:03:29 by zmakhkha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*get_next_line(int fd)
 	_size = BUFFER_SIZE;
 	if (!buff)
 		buff = ft_calloc(1, 1);
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0))
+	if (fd < 0 || BUFFER_SIZE <= 0 || !read(fd, 0, 0))
 		return (get_last(&buff, NULL, 0), NULL);
 	while (!found_new_line(buff) && _size != 0)
 		buff = fill_buffer(fd, buff, &_size);

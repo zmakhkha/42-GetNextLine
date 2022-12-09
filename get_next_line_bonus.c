@@ -6,11 +6,11 @@
 /*   By: zmakhkha <zmakhkha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 16:09:36 by zmakhkha          #+#    #+#             */
-/*   Updated: 2022/12/08 19:15:11 by zmakhkha         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:03:16 by zmakhkha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_size_len(const char *a, int b)
 {
@@ -96,7 +96,7 @@ char	*get_next_line(int fd)
 	_size = BUFFER_SIZE;
 	if (!buff[fd])
 		buff[fd] = ft_calloc(1, 1);
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0))
+	if (fd < 0 || BUFFER_SIZE <= 0 || !read(fd, 0, 0))
 		return (get_last(&buff[fd], NULL, 0), NULL);
 	while (!found_new_line(buff[fd]) && _size != 0)
 		buff[fd] = fill_buffer(fd, buff[fd], &_size);
